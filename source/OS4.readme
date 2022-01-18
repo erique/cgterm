@@ -1,0 +1,30 @@
+Compiling CGTerm - AmigaOS 4.0
+
+
+To compile with clib2 (default):
+
+ - Type "make"
+
+
+To compile with newlib:
+
+ - Open the Makefile in a text editor
+ - Comment out the clib lines
+ - Uncomment the newlib lines
+
+
+To also strip and install the resulting OS4 executables:
+
+ - Copy CGTerm1.7b2/data/#? (the .info .bmp .kbd .wav files) to the
+   drawer containing the sources (e.g. CGTerm1.72b/source/)
+ - Type "make install"
+
+ The resulting files will be copied to the a drawer named after the
+ current date and time, e.g. CGTerm1.7b2/source/CGTerm-0531.1856/
+ if the current date is 31-May 18:56
+
+
+To clean up the source drawer (e.g. when switching to newlib):
+
+ - Type "make clean"
+

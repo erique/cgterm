@@ -1,0 +1,64 @@
+Short:    CGTerm 1.7b2/OS4 - an SDL-based Telnet BBS C/G terminal
+Type:     comm/term
+Author:   Alex Carmona (AmigaOne.at.theworld.net)
+Uploader: Alex Carmona
+
+-----------------------------------------------------------------------
+
+CGTerm is an open source, platform independent terminal program for C/G
+telnet BBS:s.
+It's supposed to compile and run on any POSIX compliant OS with the SDL
+library installed.
+
+-----------------------------------------------------------------------
+
+This is an updated OS4 port of CGTerm 1.7 BETA 2
+
+This release includes both clib2 and newlib versions of the programs.
+Because newlib v3+ isn't yet available to the public I had to recompile
+it with clib2. Once newlib 3+ becomes available you can rename the
+*.newlib3 files, e.g. rename CGTerm.newlib3 to CGTerm.
+
+History:
+
+- Added clib2 version
+
+- Modified the keyboard reference to allow the program to keep running
+  the first time it's used even if the config hasn't be saved yet.
+
+- Added fresh bookmarks to the default config.
+
+- Changed the directory handling to allow selecting dirs with the enter
+  key, not just the space key.
+
+- Switched ".." to "/" for Amiga-friendly directory handling.
+
+- Replaced any reference to '/shared/cgterm/' to PROGDIR:data/ in the
+  sources. That means all kbd, wav, bmp and cfg files are in data/ now.
+
+- Adjusted the link and compile options in the Makefile.
+
+- Cleaned up the Makefile, removed all warnings. Easy to compile now.
+
+- Cleaned up the source code, all Amiga-specifc changes are enclosed
+  between /* AC */ and /* ac */ markers and use #ifdef statements.
+  This keeps it portable and hopefully the changes will be merged with
+  the main source tree.
+
+- Improved the install section. "Make install" now creates a unique
+  time-stamped drawer each time, using the format CGTerm-MMDD.HHMM
+  which is handy to avoid overwriting files when building versions for
+  clib2 and newlib.
+
+
+The latest official source code can be found at http://paradroid.net
+
+Greetings to spotUP
+
+Thanks to Steffen (-ISDL it is, 'sh sdl-config --libs' returned -lSDL)
+
+Big thanks to Nicomen for spending over an hour helping me get the clib2
+version working. I couldn't have done it without him, and you'd have to
+wait for the newlib 3 public release.
+
+Amiga: The computer that doesn't take no for an answer.
