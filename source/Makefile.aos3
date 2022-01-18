@@ -1,0 +1,83 @@
+# Makefile for AmigaOS 3.x CROSS
+
+DESTDIR=CGTerm-$(shell date +%m%d.%H%M)
+PREFIX=
+CROSS_COMPILE?=/opt/amiga/bin/m68k-amigaos-
+CC=$(CROSS_COMPILE)gcc
+
+CFLAGS=-D__USE_NETINET_IN_H -D__USE_INLINE__ -D__amiga_clib2__ -O3 -Wall -I/opt/amiga/m68k-amigaos/include/SDL -DPREFIX=\"$(PREFIX)\"
+CFLAGS+=-mcrt=clib2 -Wno-pointer-sign -mcpu=68020
+LDFLAGS=-mcrt=clib2 -lc -lSDL -lnet -lm -mcpu=68020
+
+OBJS= \
+	kernal.o \
+	gfx.o \
+	net.o \
+	config.o \
+	keyboard.o \
+	menu.o \
+	font.o \
+	timer.o \
+	crc.o \
+	sound.o \
+	macro.o \
+	ui.o
+
+TERMOBJS= \
+	xfer.o \
+	xmodem.o \
+	punter.o \
+	diskimage.o \
+	dir.o \
+	fileselector.o \
+	ui_term.o
+
+CHATOBJS= \
+	chat.o \
+	status.o \
+	ui_chat.o
+
+EDITOBJS= \
+	ui_edit.o \
+	fileselector.o \
+	dir.o \
+	diskimage.o
+
+
+.PHONY: install installdirs clean
+
+all: cgterm cgchat cgedit testkbd
+
+cgterm: cgterm.o $(OBJS) $(TERMOBJS)
+	$(CC) -o cgterm $^ $(LDFLAGS)
+
+cgchat: cgchat.o $(OBJS) $(CHATOBJS)
+	$(CC) -o cgchat $^ $(LDFLAGS)
+
+cgedit: cgedit.o $(OBJS) $(EDITOBJS)
+	$(CC) -o cgedit $^ $(LDFLAGS)
+
+testkbd: testkbd.o
+	$(CC) -o testkbd $^ $(LDFLAGS)
+
+testimage: testimage.c diskimage.c dir.c
+	$(CC) -g -O3 -Wall -o testimage $^
+
+install: all installdirs
+	$(CROSS_COMPILE)strip cgterm
+	$(CROSS_COMPILE)strip cgchat
+	$(CROSS_COMPILE)strip cgedit
+	$(CROSS_COMPILE)strip testkbd
+	cp cgterm $(DESTDIR)/CGTerm
+	cp cgchat $(DESTDIR)/CGChat
+	cp cgedit $(DESTDIR)/CGEdit
+	cp testkbd $(DESTDIR)/TestKeyboard
+	cp *.info $(DESTDIR)
+	cp ../source.info $(DESTDIR).info
+	cp ../data/* $(DESTDIR)/data
+
+installdirs: 
+	mkdir -p $(DESTDIR)/data
+
+clean:
+	rm -f cgterm cgchat cgedit testkbd *.o
