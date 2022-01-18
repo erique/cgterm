@@ -23,7 +23,7 @@ FILE *logh;
 char *default_cgterm_cfg[] = {
 #ifndef WINDOWS
 /* AC */
-#ifndef __amigaos4__
+#ifndef __amigaos__
 /* ac */
   "keyboard = us.kbd",
 /* AC */
@@ -91,7 +91,7 @@ void log_close(void) {
 
 
 /* AC */
-#ifdef __amigaos4__
+#ifdef __amigaos__
   const char *version = "\0$VER: CGTerm 1.7B2 (28.05.2005) Port by Alex Carmona";
 #endif
 /* ac */
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
   int c = 0;
   unsigned char k;
   int opt;
-#if !defined (WINDOWS) && !defined (__amigaos4__)	/* AC */
+#if !defined (WINDOWS) && !defined (__amigaos__)	/* AC */
   char fname[1024];
 #endif
 
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
     }
   }
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
   if (cfg_readconfig("PROGDIR:data/cgterm.cfg") < 0) {
     return(1);
   }
@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
       return(1);
     }
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
     if ((sound_bell = sound_load_sample("PROGDIR:data/bell.wav")) < 0) {
       printf("Couldn't load PROGDIR:data/bell.wav\n");
       return(1);

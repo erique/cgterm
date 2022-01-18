@@ -26,7 +26,7 @@ unsigned int cfg_port = 23;
 #ifdef WINDOWS
 char *cfg_keyboard = "windows.kbd";
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
 char *cfg_keyboard = "PROGDIR:data/us.kbd";
 /* ac */
 #else
@@ -62,7 +62,7 @@ int cfg_init(char *argv0) {
 #ifdef WINDOWS
   cfg_homedir = ".";
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
   cfg_homedir = "PROGDIR:data/";
 /* ac */
 #else
@@ -298,7 +298,7 @@ signed int cfg_readconfig(char *configfile) {
 #ifdef WINDOWS
 	    strcpy(keyboard, value);
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
 	    strcpy(keyboard, value);
 /* ac */
 #else

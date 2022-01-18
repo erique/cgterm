@@ -93,7 +93,7 @@ void ui_selectdirkey(SDL_keysym *keysym) {
   case SDLK_DELETE:
   case SDLK_BACKSPACE:
 /* AC */
-#ifdef __amigaos4__
+#ifdef __amigaos__
     cfg_change_dir(fsel->path, "/");
 #else
 /* ac */
@@ -121,7 +121,7 @@ void ui_selectdirkey(SDL_keysym *keysym) {
     fsel->selectedfile = dir_find(fsel->dir, fsel->current + fsel->offset);
     if (select_mode == SEL_DIR) {
 /* AC */
-#ifdef __amigaos4__
+#ifdef __amigaos__
 		cfg_change_dir(fsel->path, fsel->selectedfile->name);
 		fs_read_dir(fsel, fsel->path);
 		fs_draw(fsel);

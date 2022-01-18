@@ -136,7 +136,7 @@ SDL_Surface *gfx_loadfont(char *fontname) {
 
 int gfx_init(int fullscreen, char *appname) {
   const SDL_VideoInfo *vidinfo;
-#if !defined (WINDOWS) && !defined (__amigaos4__)	/* AC */
+#if !defined (WINDOWS) && !defined (__amigaos__)	/* AC */
   char fname[1024];
 #endif
 
@@ -183,7 +183,7 @@ int gfx_init(int fullscreen, char *appname) {
     return(1);
   }
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
   if ((rawfont[0] = gfx_loadfont("PROGDIR:data/upper.bmp")) == NULL) {
     return(1);
   }

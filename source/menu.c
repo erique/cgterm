@@ -91,7 +91,7 @@ void menu_cls(void) {
 
 int menu_init(int width, int height) {
   SDL_Surface *tempsurface;
-#if !defined (WINDOWS) && !defined (__amigaos4__)	/* AC */
+#if !defined (WINDOWS) && !defined (__amigaos__)	/* AC */
   char fname[1024];
 #endif
   menu_width = width;
@@ -134,7 +134,7 @@ int menu_init(int width, int height) {
     return(1);
   }
 /* AC */
-#elif __amigaos4__
+#elif __amigaos__
   if ((menu_font[0] = font_load_font("PROGDIR:data/10x12yellow.bmp", 10, 12, 32, 4)) == NULL) {
     printf("Couldn't load PROGDIR:data/10x12yellow.bmp\n");
     SDL_FreeSurface(menu_surface);

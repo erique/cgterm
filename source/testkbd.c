@@ -88,7 +88,7 @@ int matchkey(char *name) {
 
 
 /* AC */
-#ifdef __amigaos4__
+#ifdef __amigaos__
  const char *version = "\0$VER: Keyboard Test 1.0 (28.05.2005) Port by Alex Carmona";
 #endif
 /* ac */
